@@ -6,13 +6,17 @@ Create a new test project
 oc new-project infinispan
 ```
 
-Create a new ImageStream in the project
+## Create the ImageStream
+
+Create the app by using a pre-defined manifest file or the **oc import-image** command.
 
 ```
 oc import-image infinispan-server --from=docker.io/jboss/infinispan-server --confirm
 ```
 
-Create the app by using the ImageStream reference
+## Create the application
+
+To create the application we use the **oc new-app** command, passing extra variables for the management user and a standard user.
 
 ```
 oc new-app --image-stream=infinispan-server -e MGMT_USER=admin -e MGMT_PASS=redhat -e APP_USER=developer -e APP_PASS=openshift
@@ -43,5 +47,6 @@ NAME                HOST/PORT                                             PATH  
 infinispan-server   infinispan-server-infinispan.192.168.122.172.xip.io             infinispan-server   9990                    None
 ```
 
-For this lab I used the public wildcard DNS services from xip.io and my route url is infinispan-server-infinispan.192.168.122.172.xip.io.
+For this lab I used the public wildcard DNS services from <http://xip.io>. 
+My resulting route url is <http://infinispan-server-infinispan.192.168.122.172.xip.io>.
 
